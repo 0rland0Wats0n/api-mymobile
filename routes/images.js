@@ -61,7 +61,7 @@ module.exports = {
     cloudinary.uploader.upload(req.files[0].path, function(result) {
       var image = new Image({
         name: result.original_filename,
-        categories: req.body.categories,
+        description: req.body.description,
         uploaded_on: result.created_at,
         image: result
       });
