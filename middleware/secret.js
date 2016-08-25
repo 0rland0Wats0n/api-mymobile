@@ -1,3 +1,3 @@
-module.exports = {
-  secret: 'ilovefrontenddevelopment'
+module.exports = function() {
+  return 'ilovefrontenddevelopment';
 }

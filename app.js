@@ -42,6 +42,7 @@ app.all('/*', upload.array('file'), function(req, res, cb) {
 	}
 });
 
+app.all('/api/v1/*', [require('./middleware/validate')]);
 app.use('/', routes);
 
 module.exports = app;
