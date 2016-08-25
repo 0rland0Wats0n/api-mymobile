@@ -14,6 +14,7 @@ module.exports = {
             error: true,
             stack: err
           });
+          return;
         }
 
         if(images) {
@@ -40,6 +41,7 @@ module.exports = {
             error: true,
             stack: err
           });
+          return;
         }
         if(image) {
           res.json({
@@ -72,6 +74,7 @@ module.exports = {
             error: true,
             stack: err
           });
+          return;
         }
 
         res.json({
