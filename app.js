@@ -1,6 +1,7 @@
 require('dotenv');
 
 var express = require('express');
+var morgan = require('morgan');
 var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -20,8 +21,12 @@ var routes = require('./routes');
 var app = express();
 var upload = multer({ dest: './uploads' });
 
+//set secret
+app.set('superSecret', require('./middleware/secret'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 app.all('/*', upload.array('file'), function(req, res, cb) {
 	//CORS headers
@@ -37,6 +42,7 @@ app.all('/*', upload.array('file'), function(req, res, cb) {
 	}
 });
 
+app.all('/api/v1/*', [require('./middleware/validate')]);
 app.use('/', routes);
 
 module.exports = app;
