@@ -34,7 +34,11 @@ module.exports = {
           return;
         }
 
-        var token = jwt.sign(user, require('../middleware/secret').secret, {
+        var token = jwt.sign({
+          name: user.name;
+          username: user.username,
+          admin: user.admin
+        }, require('../middleware/secret').secret, {
           expiresIn: 86400 //24hrs
         });
 
