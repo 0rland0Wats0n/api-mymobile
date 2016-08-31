@@ -1,4 +1,4 @@
-require('dotenv');
+require('dotenv').config();
 
 var express = require('express');
 var morgan = require('morgan');
@@ -14,7 +14,38 @@ cloudinary.config({
 });
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO || 'mongodb://localhost:27017/mymobile');
+var db = process.env.MONGO || 'mongodb://localhost:27017/mymobile';
+mongoose.connect(db);
+
+// display connection message
+mongoose.connection.on('connected', function() {
+  console.log('Connected to ' + db);
+});
+
+//see if there is an admin user in db
+var User = require('./models/User');
+User.findOne()
+  .where('admin', true)
+  .exec(function(err, admin) {
+    if(err) { throw err; }
+
+    if(admin) {
+      return;
+    }
+
+    var user = new User({
+      name: 'Admin User',
+      username: 'admin',
+      password: 'password',
+      admin: true
+    });
+
+    user.save(function(err) {
+      if(err) { throw err; }
+
+      return user;
+    });
+  });
 
 var routes = require('./routes');
 

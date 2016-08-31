@@ -1,7 +1,7 @@
 var app = require('express')();
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 var User = require('../models/User');
 
