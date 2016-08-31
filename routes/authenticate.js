@@ -35,7 +35,7 @@ module.exports = {
         }
 
         var token = jwt.sign({
-          name: user.name;
+          name: user.name,
           username: user.username,
           admin: user.admin
         }, require('../middleware/secret').secret, {
