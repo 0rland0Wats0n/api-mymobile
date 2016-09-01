@@ -43,6 +43,7 @@ User.findOne()
     user.save(function(err) {
       if(err) { throw err; }
 
+      console.log("Created default user.");
       return user;
     });
   });

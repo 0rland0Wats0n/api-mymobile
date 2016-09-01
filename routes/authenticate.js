@@ -38,7 +38,7 @@ module.exports = {
           name: user.name,
           username: user.username,
           admin: user.admin
-        }, require('../middleware/secret').secret, {
+        }, require('../middleware/secret')(), {
           expiresIn: 86400 //24hrs
         });
 
