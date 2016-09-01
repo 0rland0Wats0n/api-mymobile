@@ -8,9 +8,9 @@ var multer = require('multer');
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
-  cloud_name: 'dq5pfpgsl',
-  api_key: "283777418598818",
-  api_secret: "mk-SWieerp6TDpOQa-TNI5jG5Vw"
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
 });
 
 var mongoose = require('mongoose');
