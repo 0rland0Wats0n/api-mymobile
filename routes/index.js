@@ -9,7 +9,7 @@ router.post('/authenticate', authenticate.authenticate);
 
 router.get('/api/images', images.getAll);
 router.get('/api/images/:id', images.getById);
-router.delete('/api/v1/images/:pid', images.remove);
+router.delete('/api/v1/images/:pid/:id', images.remove);
 router.post('/api/v1/image', images.upload);
 
 router.get('/api/users', users.getAll);

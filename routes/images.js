@@ -91,7 +91,8 @@ module.exports = {
   remove: function(req, res) {
     cloudinary.uploader.destroy(req.params.pid, function(result) {
       //remove from db
-      Image.remove({ 'image.public_id': req.params.pid })
+      Image.remove()
+        .or([{ 'image.public_id': req.params.pid }, { _id: req.params.id }])
         .exec(function(err) {
           if(err) {
             res.json({
